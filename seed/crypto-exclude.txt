@@ -1,0 +1,6 @@
+# 从最终结果中剔除。写完整域名，剔除该域名及其所有子域。
+# 美国持牌实体：走美国 IP 才正常，甩到非美节点反而触发风控
+binance.us
+# 说明（无需列入 exclude，因为品牌关键词本来就捞不到，仅作备忘）：
+#   coinbase.com / kraken.com / gemini.com / bitstamp.net / okcoin.com —— 美国所
+#   coingecko / coinmarketcap / etherscan / coinglass / tradingview —— 行情资讯，对美国 IP 无意见

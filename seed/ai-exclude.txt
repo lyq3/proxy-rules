@@ -1,0 +1,6 @@
+# 从 AI 规则集中剔除。写完整域名，剔除该域名及其所有子域。
+# Kimi / Moonshot 是国内 AI，走代理反而慢且可能触发风控（与旁路由 AI_CN 规则一致）
+kimi.ai
+kimi.com
+moonshot.ai
+moonshot.cn

@@ -1,0 +1,25 @@
+# 品牌关键词：build 用它从上游 category-cryptocurrency 里捞同品牌的马甲域名
+# （上游只捞 "+." 开头的条目，且要求域名首段 fullmatch <brand>[a-z0-9]*，
+#  所以 bybit-exchange.github.io 这类第三方托管不会被误捞）
+# 收录标准：明确拒绝美国用户 / 已退出美国市场的交易所。
+binance
+okx
+bybit
+huobi
+htx
+gate
+gateio
+mexc
+bitget
+kucoin
+bitmex
+deribit
+bitfinex
+bingx
+phemex
+blofin
+weex
+lbank
+coinex
+hyperliquid
+poloniex

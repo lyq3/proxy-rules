@@ -1,0 +1,52 @@
+name: build
+
+on:
+  schedule:
+    - cron: '0 20 * * *'   # 每天 UTC 20:00 = 北京 04:00
+  push:
+    paths: ['seed/**', 'build.py', '.github/workflows/build.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 生成 list / yaml / json
+        run: python3 build.py
+
+      - name: 装 mihomo 与 sing-box
+        run: |
+          set -euo pipefail
+          gh() { curl -sSL "https://api.github.com/repos/$1/releases/latest"; }
+          gh MetaCubeX/mihomo \
+            | grep -o 'https://[^"]*mihomo-linux-amd64-v[0-9.]*\.gz' | head -1 \
+            | xargs curl -sSL -o mihomo.gz
+          gunzip mihomo.gz && chmod +x mihomo
+          gh SagerNet/sing-box \
+            | grep -o 'https://[^"]*sing-box-[0-9.]*-linux-amd64\.tar\.gz' | head -1 \
+            | xargs curl -sSL -o sing-box.tar.gz
+          tar -xzf sing-box.tar.gz --strip-components=1 --wildcards '*/sing-box'
+          chmod +x sing-box
+          ./mihomo -v && ./sing-box version
+
+      - name: 编译 mrs / srs
+        run: |
+          set -euo pipefail
+          for n in crypto-nonus ai-us; do
+            ./mihomo convert-ruleset domain yaml "dist/$n.yaml" "dist/$n.mrs"
+            ./sing-box rule-set compile --output "dist/$n.srs" "dist/$n.json"
+          done
+          ls -l dist/
+
+      - name: 提交产物
+        run: |
+          git config user.name  stitch
+          git config user.email boy74119@gmail.com
+          git add dist/
+          git diff --staged --quiet || git commit -m "build: 更新规则集 $(date -u +%F)"
+          git push

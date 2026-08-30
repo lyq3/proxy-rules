@@ -1,0 +1,48 @@
+# 权威域名清单：无条件写入结果，与上游是否收录无关。
+# 重点补上游 category-cryptocurrency 缺失的 API / WebSocket 端点与新主域。
+# 一行一个域名，匹配该域名及其全部子域。
+
+# --- Binance ---
+binance.com
+binance.vision          # data-api.binance.vision 历史行情
+bnbstatic.com           # 前端静态资源，缺了页面白屏
+
+# --- OKX ---
+okx.com
+
+# --- Bybit ---
+bybit.com
+
+# --- HTX / Huobi ---
+htx.com
+huobi.pro               # api.huobi.pro / api-aws.huobi.pro
+huobi.com
+
+# --- Gate ---
+gate.com                # 2024 年起新主域，上游未收录
+gate.io
+gateio.ws               # api.gateio.ws —— 官方 REST/WS 端点，上游未收录
+
+# --- MEXC ---
+mexc.com
+
+# --- Bitget ---
+bitget.com
+
+# --- KuCoin ---
+kucoin.com
+
+# --- 衍生品 / 其他限美所（上游整家缺失的用 * 标出）---
+bitmex.com
+deribit.com
+bitfinex.com
+bingx.com
+phemex.com              # *
+blofin.com              # *
+weex.com                # *
+lbank.com               # *
+lbkex.com               # * LBank API 域
+coinex.com              # *
+hyperliquid.xyz
+poloniex.com            # *
+backpack.exchange       # *

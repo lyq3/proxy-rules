@@ -1,0 +1,3 @@
+# AI 规则集的增补域名，在上游 category-ai-!cn 之外无条件写入。
+# 目前留空——上游覆盖 OpenAI / Anthropic / Gemini / Copilot / Perplexity /
+# Windsurf / Devin / Cohere 等，够用。发现漏网的往这里加。
