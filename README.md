@@ -9,11 +9,10 @@
 
 ## 订阅地址
 
-把 `<USER>/<REPO>` 换成实际仓库：
 
 ```
-https://raw.githubusercontent.com/<USER>/<REPO>/main/dist/crypto-nonus.<ext>
-https://raw.githubusercontent.com/<USER>/<REPO>/main/dist/ai-us.<ext>
+https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/crypto-nonus.<ext>
+https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/ai-us.<ext>
 ```
 
 | 客户端 | `<ext>` | 备注 |
@@ -32,14 +31,14 @@ rule-providers:
     type: http
     behavior: domain
     format: mrs
-    url: "https://raw.githubusercontent.com/<USER>/<REPO>/main/dist/crypto-nonus.mrs"
+    url: "https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/crypto-nonus.mrs"
     path: ./ruleset/crypto-nonus.mrs
     interval: 86400
   ai-us:
     type: http
     behavior: domain
     format: mrs
-    url: "https://raw.githubusercontent.com/<USER>/<REPO>/main/dist/ai-us.mrs"
+    url: "https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/ai-us.mrs"
     path: ./ruleset/ai-us.mrs
     interval: 86400
 
@@ -55,9 +54,9 @@ rules:
   "route": {
     "rule_set": [
       { "type": "remote", "tag": "crypto-nonus", "format": "binary",
-        "url": "https://raw.githubusercontent.com/<USER>/<REPO>/main/dist/crypto-nonus.srs" },
+        "url": "https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/crypto-nonus.srs" },
       { "type": "remote", "tag": "ai-us", "format": "binary",
-        "url": "https://raw.githubusercontent.com/<USER>/<REPO>/main/dist/ai-us.srs" }
+        "url": "https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/ai-us.srs" }
     ],
     "rules": [
       { "rule_set": "crypto-nonus", "outbound": "JP" },
