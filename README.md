@@ -20,7 +20,7 @@ https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/ai-us.<ext>
 | mihomo / Clash.Meta | `mrs` | `behavior: domain`，`format: mrs`（推荐，体积最小） |
 | mihomo / Clash.Meta | `yaml` | `behavior: domain`，`format: yaml` |
 | sing-box | `srs` | `type: remote`，`format: binary` |
-| Surge / Shadowrocket / Loon / QX | `list` | `DOMAIN-SUFFIX` 纯文本 |
+| **Shadowrocket** / Surge / Loon / QX | `list` | `DOMAIN-SUFFIX` 纯文本，见下方专节 |
 | sing-box（源文件，调试用） | `json` | 未编译的 rule-set 源 |
 
 ### mihomo 配置片段
@@ -46,6 +46,37 @@ rules:
   - RULE-SET,crypto-nonus,JP        # 日本出口
   - RULE-SET,ai-us,US               # 美国出口
 ```
+
+### Shadowrocket 配置片段
+
+Shadowrocket 只吃 `.list`（不支持 `.mrs` / `.srs`）。
+
+**方式一：改配置文件**（配置 → 选中配置 → 右侧 ⓘ → 编辑）
+
+```conf
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/crypto-nonus.list,JP
+RULE-SET,https://raw.githubusercontent.com/lyq3/proxy-rules/main/dist/ai-us.list,US
+# ... 其余规则
+FINAL,PROXY
+```
+
+`JP` / `US` 换成你配置里实际的策略组名，必须一字不差。
+
+**方式二：App 内加**（首页 → 底部「配置」以外的「规则」标签 → 右上 + → 类型选 `RULE-SET`）
+URL 填上面那两条，策略选对应节点。
+
+两点注意：
+
+- **首次添加时必须能连上 `raw.githubusercontent.com`**，否则规则集是空的。建议先开全局代理再添加。
+- Shadowrocket 不会自动更新远程规则集，靠配置里的 `[General]` 段控制：
+
+  ```conf
+  [General]
+  update-url = <你的配置订阅地址>
+  ```
+
+  没有订阅地址的话，就在「配置」页下拉刷新手动更新。规则集本身每天由 CI 重建，拉一次就是最新的。
 
 ### sing-box 配置片段
 
